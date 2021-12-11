@@ -1,0 +1,109 @@
+local function anim5(self, node)
+	if gui.get_node("background") == node then
+		-- special case for background. animate alpha to 60%
+		local to_color = gui.get_color(node)
+		to_color.w = 0.6
+		gui.animate(node, gui.PROP_COLOR, to_color, gui.EASING_OUT, 1.2, 0.1)
+	end
+end
+
+local function anim4(self, node)
+	-- animate scale to 100%
+	local s = 1.3
+	gui.animate(node, gui.PROP_SCALE, vmath.vector4(s, s, s, 0), gui.EASING_INOUT, 0.12, 0, anim5)
+end
+
+local function anim3(self, node)
+	-- animate scale to 106%
+	local s = 1.2
+	gui.animate(node, gui.PROP_SCALE, vmath.vector4(s, s, s, 0), gui.EASING_INOUT, 0.12, 0, anim4)
+end
+
+local function anim2(self, node)
+	-- animate scale to 98%
+	local s = 0.98
+	gui.animate(node, gui.PROP_SCALE, vmath.vector4(s, s, s, 0), gui.EASING_INOUT, 0.12, 0, anim3)
+end
+
+local function anim1(node, d)
+	-- set scale to 70%
+	local start_scale = 0.7
+	gui.set_scale(node, vmath.vector4(start_scale, start_scale, start_scale, 0))
+
+	-- get current color and set alpha to 0 to fade up
+	local from_color = gui.get_color(node)
+	local to_color = gui.get_color(node)
+	from_color.w = 0
+	gui.set_color(node, from_color)
+
+	-- animate alpha value from 0 to 1
+	gui.animate(node, gui.PROP_COLOR, to_color, gui.EASING_IN, 0.2, d)
+
+	-- animate scale from %70 to 110%
+	local s = 1.4
+	gui.animate(node, gui.PROP_SCALE, vmath.vector4(s, s, s, 0), gui.EASING_IN, 0.2, d, anim2)
+end
+
+function on_input(self, action_id, action)
+	if action_id == nil then --<5>
+		if gui.pick_node(gui.get_node("new_game"), action.x, action.y) then -- <6>
+			if not self.is_over_newGame then
+				local alphcolor = gui.get_color(gui.get_node("new_game"))
+				alphcolor.w = 1
+				gui.set_color(gui.get_node("new_game"), alphcolor)
+				self.is_over_newGame = true
+			end
+		else
+			if self.is_over_newGame then
+				local alphcolor = gui.get_color(gui.get_node("new_game"))
+				alphcolor.w = 0.6
+				gui.set_color(gui.get_node("new_game"), alphcolor)
+				self.is_over_newGame = false
+			end
+		end
+		if gui.pick_node(gui.get_node("quit"), action.x, action.y) then -- <6>
+			if not self.is_over_quit then
+				local from_color = gui.get_color(gui.get_node("quit"))
+				from_color.w = 1
+				gui.set_color(gui.get_node("quit"), from_color)
+				self.is_over_quit = true
+			end
+		else
+			if self.is_over_quit then
+				local from_color = gui.get_color(gui.get_node("quit"))
+				from_color.w = 0.6
+				gui.set_color(gui.get_node("quit"), from_color)
+				self.is_over_quit = false
+			end
+		end
+	end
+	if(action_id == hash("touch") and action.released == true) then
+		local textBegin = gui.get_node("new_game")
+		if(gui.pick_node(textBegin,action.x,action.y)) then
+			msg.post("loader:/go#loader", "start_game")
+		end
+	end
+	if(action_id == hash("touch") and action.released == true) then
+		local textExit = gui.get_node("quit")
+		if(gui.pick_node(textExit,action.x,action.y)) then
+			msg.post("@system:", "exit", {code = 0})
+		end
+	end    
+end
+
+function init(self)
+	self.is_over_newGame = false
+	self.is_over_quit = false
+	-- start animations for all nodes
+	-- background, button-boxes and text are animated equally
+	-- d is the animation start delay
+	msg.post(".", "acquire_input_focus")
+	local d = 0.4
+	anim1(gui.get_node("new_game"), d)
+
+	d = 0.9
+	anim1(gui.get_node("quit"), d)
+
+	d = 0.1
+	anim1(gui.get_node("background"), d)
+end

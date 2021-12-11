@@ -1,0 +1,49 @@
+function init(self)
+	drawHexGrid(0, 0, 7, 54)
+	msg.post(".", "acquire_input_focus")
+	msg.post("@render:", "use_fixed_fit_projection", { near = -1, far = 1 })
+end
+
+function round(num, numDecimalPlaces)
+	local mult = 10^(numDecimalPlaces or 0)
+	return math.floor(num * mult + 0.5) / mult
+end
+
+function drawHexGrid(originx, originy, size, radius)
+	ang30 = math.rad(30)
+	xOff = math.cos(ang30) * (radius)
+	yOff = math.sin(ang30) * (radius)
+	xTemp = 0
+	yTemp = 0
+	
+	if(size % 2 ~= 0) then
+		size = size + 1
+	end
+	half = size/2
+	for row=0,size do
+		cols = size - math.abs(row - half)
+
+		for col=0,cols do
+			if (row < half) then
+				xTemp = col-row
+			else
+				xTemp = col - half
+			end
+			yTemp = row - half
+			x = originx + xOff * (col * 2 + 1 - cols)
+			y = originy + yOff * (row - half) * 3
+			drawHex(x,y)
+		end
+	end
+end
+
+function drawHex(x, y)
+	local factories = {"#stonefactory","#mossfactory","#sandfactory","#snowfactory","#lavafactory"}
+	factory.create(factories[math.random(#factories)],vmath.vector3(x,y,0), nil, { parent = msg.url() })
+end
+					
+function on_input(self, action_id, action)
+	if action_id == hash("touch") and action.pressed then
+		print("Touch!")
+	end
+end
