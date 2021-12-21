@@ -1,0 +1,59 @@
+require "assets.modules.cursorSprite"
+
+local function animateButton(node, d)
+	-- Change Scale to reduce size
+	local start_scale = 0.7
+	gui.set_scale(node, vmath.vector4(start_scale, start_scale, start_scale, 0))
+
+	-- Get the current color and set alpha to 0 as a basis for fading up
+	local from_color = gui.get_color(node)
+	local to_color = gui.get_color(node)
+	from_color.w = 0
+	gui.set_color(node, from_color)
+
+	-- Animate the alpha value from 0 to 1
+	gui.animate(node, gui.PROP_COLOR, to_color, gui.EASING_IN, 0.2, d)
+
+	-- Animate the scale up to 110%
+	local s = 1.1
+	gui.animate(node, gui.PROP_SCALE, vmath.vector4(s, s, s, 0),
+	gui.EASING_IN, 0.2, d, animateButton2)
+end
+
+function init(self)
+	msg.post(".", "acquire_input_focus")
+
+	-- Calls the animation functions for each menu button, with a 0.2 second delay
+	self.panelOpen = false
+
+end
+
+function on_input(self, action_id, action)
+	if not action_id or action_id == hash("touch") then
+	-- Process the clicking of the Select Level 1 Button (if the popup window is inactive)
+		if action.pressed and gui.pick_node(gui.get_node("buildButton"), action.x, action.y) then
+			
+			local buildingPanel = gui.get_node("buildPanel")
+			local panelPos = gui.get_position(buildingPanel)
+			local buildingButton = gui.get_node("buildButton")
+			local buttonRot = gui.get_rotation(buildingButton)
+			if not self.panelOpen then
+				print("opening panel")
+				gui.animate(buildingButton, gui.PROP_ROTATION, vmath.vector4(buttonRot.x, buttonRot.y, buttonRot.z+50,0), gui.EASING_INOUTQUAD, 0.5) -- start animation
+				gui.animate(buildingPanel, gui.PROP_POSITION, vmath.vector3(panelPos.x-400, panelPos.y, panelPos.z), gui.EASING_INOUTQUAD, 0.5) -- start animation
+				self.panelOpen = true
+			else
+				gui.animate(buildingButton, gui.PROP_ROTATION, vmath.vector4(buttonRot.x, buttonRot.y, buttonRot.z-50,0), gui.EASING_INOUTQUAD, 0.5) -- start animation
+				gui.animate(buildingPanel, gui.PROP_POSITION, vmath.vector3(panelPos.x+400, panelPos.y, panelPos.z), gui.EASING_INOUTQUAD, 0.5) -- start animation
+				self.panelOpen = false
+			end
+		end
+		if action.pressed and gui.pick_node(gui.get_node("House"), action.x, action.y) then
+			print("house selected")
+			set_sprite_image("/Houses#houseFactory")
+			print(get_sprite_image())
+			
+		end
+	end
+	
+end

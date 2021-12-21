@@ -1,4 +1,4 @@
-script: "/main/GameGUI.gui_script"
+script: "/assets/GameGUI/GameGUI.gui_script"
 fonts {
   name: "mainmenu"
   font: "/assets/mainmenu.font"
@@ -105,7 +105,7 @@ nodes {
   type: TYPE_BOX
   blend_mode: BLEND_MODE_ALPHA
   texture: "BuildingsSource/anim"
-  id: "box2"
+  id: "House"
   xanchor: XANCHOR_NONE
   yanchor: YANCHOR_NONE
   pivot: PIVOT_CENTER

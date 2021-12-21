@@ -562,11 +562,11 @@ vmath	view	proj€€€ÿ
 M pos  Jadjust  Jm D „  iÄÝ ±4   6  9' B X€6 ' )  B6 ' B6 ' B6 '	 B6 '
  B*  = ) = 5 =6 9)À)€)	  B=6 9)à)@)	  B=6 9B=6 9B=6 9)  ) )	  B=6 9)  )  )	ÿÿB=6 9)  ) )	  B=6 9)  )  )	ÿÿB=6 9) )  )	  B=4  =4  =4  =6 9B= 6 9B= 6 9B=  5" 9  9#=$9  9%=&5' =(=! 6 9B=) 45+ > 5, >5- >=* 6 9B=. )  =/ ) =0 ) =1 4   32 3	3 3
 4 36 =5 38 =7 3: =9 3< =; 3> == 3@ =? 3B =A 3D =C 3F =E 3H =G 3J =I 3L =K 3N =M 4  3P =O 3R =Q 3T =S 3V =U 3X =W 3Z =Y 3\ =[ 3^ =] 3` =_ 3b =a 3d =c 3f =e 3h =g 2  €L   world_to_screen screen_to_gui_pick screen_to_gui screen_to_world_plane screen_to_world_ray screen_to_world_2d screen_to_viewport update_window update_window_size calculate_proj calculate_view remove_window_listener add_window_listener follow_lerp_func unfollow follow stop_shaking recoil 
-shake pan set_ortho_scale get_ortho_scale 	zoom camera_final camera_init activate_camera   GUI_ADJUST_STRETCHGUI_ADJUST_ZOOMGUI_ADJUST_FITguiOffset ox sysxoy  ox sysxoy  ox sysxoy guiAdjustconfigWin
-scale xyheighty
+shake pan set_ortho_scale get_ortho_scale 	zoom camera_final camera_init activate_camera   GUI_ADJUST_STRETCHGUI_ADJUST_ZOOMGUI_ADJUST_FITguiOffset sxoy ox sy sxoy ox sy sxoy ox syguiAdjustconfigWin
+scale yxheighty
 widthx x y viewportwindow	projmatrix4	viewshakesrecoilsfollowslrightVeclforwardVeclupVecwforwardVecwupVec	wpos	lposhalfViewAreaviewAreavector3
-vmathscaleMode followingabs_farZabs_nearZÿÿÿÿ	farZ
-nearZÿÿÿÿworldZ aspectRatio €€àÿfixedAspectRatiouseViewAreaorthoScaleorthographicshould_print_warningfollow_lerp_speedortho_zoom_multfixedHeightfixedWidthfixedAreaexpandView	hashfERROR - rendercam - 'shared_state' setting in game.project must be enabled for rendercam to work.
+vmathscaleMode abs_farZabs_nearZÿÿÿÿ	farZ
+nearZÿÿÿÿworldZ aspectRatio €€àÿfixedAspectRatiouseViewAreaorthoScaleorthographicshould_print_warningfollowingfollow_lerp_speedortho_zoom_multfixedHeightfixedWidthfixedAreaexpandView	hashfERROR - rendercam - 'shared_state' setting in game.project must be enabled for rendercam to work.
 error1script.shared_stateget_configsys÷Ñðúáõ‘ü           	 	 	 
  
  
@@ -706,11 +706,11 @@ vmath	view	proj€€€ÿ
 ÿÿB=6 9) )	  )
   B=4  =4  =4  =6 9B= 6 9B= 6 9B=  5" 9  9#=$9  9%=&5' =(=! 6 9B=) 45+ > 5, >5- >=* 6 9B=. )  =/ ) =0 ) =1 4   32 3	3 3
 4 36 =5 38 =7 3: =9 3< =; 3> == 3@ =? 3B =A 3D =C 3F =E 3H =G 3J =I 3L =K 3N =M 4  3P =O 3R =Q 3T =S 3V =U 3X =W 3Z =Y 3\ =[ 3^ =] 3` =_ 3b =a 3d =c 3f =e 3h =g 2  €L   world_to_screen screen_to_gui_pick screen_to_gui screen_to_world_plane screen_to_world_ray screen_to_world_2d screen_to_viewport update_window update_window_size calculate_proj calculate_view remove_window_listener add_window_listener follow_lerp_func unfollow follow stop_shaking recoil 
-shake pan set_ortho_scale get_ortho_scale 	zoom camera_final camera_init activate_camera   GUI_ADJUST_STRETCHGUI_ADJUST_ZOOMGUI_ADJUST_FITguiOffset oy ox sysx oy ox sysx oy ox sysxguiAdjustconfigWin
-scale xyheighty
+shake pan set_ortho_scale get_ortho_scale 	zoom camera_final camera_init activate_camera   GUI_ADJUST_STRETCHGUI_ADJUST_ZOOMGUI_ADJUST_FITguiOffset ox sysxoy  ox sysxoy  ox sysxoy guiAdjustconfigWin
+scale yxheighty
 widthx y x viewportwindow	projmatrix4	viewshakesrecoilsfollowslrightVeclforwardVeclupVecwforwardVecwupVec	wpos	lposhalfViewAreaviewAreavector3
-vmathscaleMode followingabs_farZabs_nearZÿÿÿÿ	farZ
-nearZÿÿÿÿworldZ aspectRatio €€àÿfixedAspectRatiouseViewAreaorthoScaleorthographicshould_print_warningfollow_lerp_speedortho_zoom_multfixedHeightfixedWidthfixedAreaexpandView	hashfERROR - rendercam - 'shared_state' setting in game.project must be enabled for rendercam to work.
+vmathscaleMode fixedAspectRatiouseViewAreaorthoScaleorthographicshould_print_warningfollowingabs_farZabs_nearZÿÿÿÿ	farZ
+nearZÿÿÿÿworldZ aspectRatio €€àÿfollow_lerp_speedortho_zoom_multfixedHeightfixedWidthfixedAreaexpandView	hashfERROR - rendercam - 'shared_state' setting in game.project must be enabled for rendercam to work.
 error1script.shared_stateget_configsys÷Ñðúáõ‘ü           	 	 	 
  
  
