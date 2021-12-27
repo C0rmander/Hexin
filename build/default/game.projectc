@@ -131,7 +131,6 @@ ray_cast_limit_3d = 128
 scale = 0.01
 trigger_overlap_capacity = 16
 type = 2D
-velocity_threshold = 1.0
 world_count = 4
 
 [profiler]

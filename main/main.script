@@ -1,5 +1,5 @@
 function init(self)
-	drawHexGrid(0, 0, 7, 54)
+	--drawHexGrid(0, 0, 7, 54)
 	drawWorkers()
 	msg.post(".", "acquire_input_focus")
 	msg.post("@render:", "use_fixed_fit_projection", { near = -1, far = 1 })
@@ -7,7 +7,12 @@ end
 
 function drawWorkers()
 	print("drawing scientists")
-	factory.create("/scientists#scientistFactory", vmath.vector3(5,5,10))
+	factory.create("/scientists#scientistFactory", vmath.vector3(0,0,1), nil, nil, 10.0)
+	factory.create("/scientists#scientistFactory", vmath.vector3(0,0,1), nil, nil, 10.0)
+	factory.create("/scientists#scientistFactory", vmath.vector3(0,0,1), nil, nil, 10.0)
+	factory.create("/scientists#scientistFactory", vmath.vector3(0,0,1), nil, nil, 10.0)
+	factory.create("/scientists#scientistFactory", vmath.vector3(0,0,1), nil, nil, 10.0)
+	factory.create("/scientists#scientistFactory", vmath.vector3(0,0,1), nil, nil, 10.0)
 end
 
 function round(num, numDecimalPlaces)
