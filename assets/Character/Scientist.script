@@ -1,0 +1,48 @@
+local targetHex = require "hexes.TargetHex"
+function init(self)
+	self.position = vmath.vector3(0,0,0)
+	self.speed = vmath.vector3(0,0,0)
+end
+
+function final(self)
+end
+
+function update(self, dt)
+	local position = go.get_position()
+	local targetX = math.ceil(targetHex.position.x)
+	local targetY = math.ceil(targetHex.position.y)
+	print(position, "    ", targetX, "   ", taregtY)
+	if(2 > 1) then
+		print("true")
+	end
+	
+	if(position.x ~= targetX) then
+		if(position.x > targetX) then
+			self.speed.x = -50
+		else
+			self.speed.x = 50
+		end
+	end
+
+	if(position.y ~= targetY) then
+		if(position.y > targetY) then
+			self.speed.y = -50
+		else
+			self.speed.y = 50
+		end
+	end
+
+	--flip the image if character walking backwards NOTE: its a bit fucked
+	--sprite.set_hflip("#sprite", self.speed.x < 0)
+	go.set_position(go.get_position()+self.speed*dt)
+	
+end
+
+function on_message(self, message_id, message, sender)
+end
+
+function on_input(self, action_id, action)
+end
+
+function on_reload(self)
+end
